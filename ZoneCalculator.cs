@@ -10,7 +10,7 @@ namespace Synergy.Data.Baseball.Calculators
     public class ZoneCalculator : IZoneCalculator
     {
         /// <summary>
-        /// Sets pitch zone number based on the drawing at https://synergysports.atlassian.net/wiki/display/DTASP/Pitch+zones
+        /// Sets pitch zone number based on the drawing at https://i.ibb.co/B6gzjMW/Pitch-Zones.jpg
         /// </summary>
         /// <param name="pitch"></param>
         public void PerformCalculation(PitchEvent pitch)
@@ -22,13 +22,13 @@ namespace Synergy.Data.Baseball.Calculators
         {
             if (pitch.SzTop == 0.0 || pitch.SzBot == 0.0)
             {
-                return 0;
+                return 0; // return 0 if SzTop and SzBot is 0 (business requirement)
             }
 
             double zoneHeight = pitch.SzTop - pitch.SzBot; //feet
-            double zoneWidth = (double)17 / 12; //feet
+            double zoneWidth = (double)17 / 12; //Baseball standard numbers. In feets.
             double halfZoneWidth = zoneWidth / 2; //feet
-            double ballDiameter = 2.94 / 12; //feet
+            double ballDiameter = 2.94 / 12; //Baseball standard numbers. In feets.
 
             // zone 2, 5, 8, 12, 23
             if (Math.Abs(pitch.Px) <= zoneWidth / 6)
